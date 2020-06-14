@@ -347,14 +347,26 @@ open class AnimatedField: UIView {
         textField.inputAccessoryView = accessoryView ?? toolBar
         textField.inputView = numberPicker
     }
-    
+
     open override func becomeFirstResponder() -> Bool {
-        textField.becomeFirstResponder()
+        let result: Bool
+        switch self.type {
+        case .multiline:
+            result = textView.becomeFirstResponder()
+        default:
+            result = textField.becomeFirstResponder()
+        }
         return super.becomeFirstResponder()
     }
-    
+
     open override func resignFirstResponder() -> Bool {
-        textField.resignFirstResponder()
+        let result: Bool
+        switch self.type {
+        case .multiline:
+            result = textView.resignFirstResponder()
+        default:
+            result = textField.resignFirstResponder()
+        }
         return super.resignFirstResponder()
     }
     
