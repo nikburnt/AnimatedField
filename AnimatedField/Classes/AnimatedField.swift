@@ -318,6 +318,7 @@ open class AnimatedField: UIView {
     
     private func setupDatePicker(mode: UIDatePicker.Mode?, minDate: Date?, maxDate: Date?, chooseText: String?) {
         datePicker = UIDatePicker()
+        datePicker.locale = Locale.current
         datePicker?.datePickerMode = mode ?? .date
         datePicker?.maximumDate = maxDate
         datePicker?.minimumDate = minDate
