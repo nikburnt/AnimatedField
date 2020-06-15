@@ -210,6 +210,7 @@ open class AnimatedField: UIView {
             textField.textColor = format.textColor
             textView.font = format.textFont
             textView.textColor = format.textColor
+//            textView.textContainer.lineBreakMode = .byWordWrapping
             lineView.backgroundColor = format.lineColor
             eyeButton.tintColor = format.textColor
             counterLabel.isHidden = !format.counterEnabled
@@ -227,6 +228,9 @@ open class AnimatedField: UIView {
         set {
             textField.text = textField.isHidden ? nil : newValue
             textView.text = textView.isHidden ? "" : newValue
+            if !textView.isHidden {
+                resizeTextViewHeight()
+            }
         }
     }
 
