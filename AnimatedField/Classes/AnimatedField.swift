@@ -447,7 +447,13 @@ extension AnimatedField {
     }
 
     func updateCounterLabel() {
-        let count = textView.text == attributedPlaceholder?.string && textView.textColor == UIColor.lightGray.withAlphaComponent(0.8) ? (textView.text.count - (attributedPlaceholder?.string.count ?? 0)) : textView.text.count
+        let count: Int
+        if case let AnimatedFieldType.multiline = self.type {
+            count = textView.text.count
+        } else {
+            count = textField.text?.count ?? 0
+        }
+
         let value = (dataSource?.animatedFieldLimit(self) ?? 0) - count
         let text = format.countDown ? "\(value)" : "\((count))/\(dataSource?.animatedFieldLimit(self) ?? 0)"
         counterLabel.text = text
